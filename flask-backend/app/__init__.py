@@ -12,7 +12,7 @@ from flask_wtf.csrf import CSRFProtect, generate_csrf
 app = Flask(__name__)
 app.config.from_object(Configuration)
 app.register_blueprint(item_routes, url_prefix='/api/items')
-app.register_blueprint(pokemon_routes, url_prefix='/api/pokemon')
+app.register_blueprint(pokemon_routes)
 db.init_app(app)
 Migrate(app, db)
 
