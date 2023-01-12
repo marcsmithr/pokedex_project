@@ -11,8 +11,8 @@ class Pokemon(db.Model):
     defense = db.Column(db.Integer, nullable=False)
     image_url = db.Column(db.String(255), nullable=False)
     name = db.Column(db.String(255), nullable=False)
-    type_id = db.Column(db.String(50), ForeignKey("pokemon_types.id"), nullable=False)
-    # moves = db.Column(db.ARRAY(db.String(50)), nullable=False)
+    type_id = db.Column(db.Integer, ForeignKey("pokemon_types.id"), nullable=False)
+    moves = db.Column(db.String(255), nullable=False)
     encounter_rate = db.Column(db.Float(5, 2), default=1.00, nullable=False)
     catch_rate = db.Column(db.Float(5, 2), default=1.00, nullable=False)
     captured = db.Column(db.Boolean, default=False, nullable=False)
@@ -21,7 +21,7 @@ class Pokemon(db.Model):
 
     types = db.relationship("PokemonType", back_populates='pokemon')
     items = db.relationship("Item", back_populates='pokemon', cascade="all, delete")
-    moves = db.relationship("Move", back_populates='pokemon', cascade="all, delete")
+    # moves = db.relationship("Move", back_populates='pokemon', cascade="all, delete")
 
     def to_dict(self):
         return {
@@ -40,18 +40,18 @@ class Pokemon(db.Model):
             "updated_at": self.updated_at
         }
 
-class Move(db.Model):
-    __tablename__ = 'moves'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255), nullable=False)
+# class Move(db.Model):
+#     __tablename__ = 'moves'
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(255), nullable=False)
 
-    pokemon = db.relationship("Pokemon", back_populates='moves')
+#     pokemon = db.relationship("Pokemon", back_populates='moves')
 
-    def to_dict(self):
-        return {
-            "id": self.id,
-            "name": self.name
-        }
+#     def to_dict(self):
+#         return {
+#             "id": self.id,
+#             "name": self.name
+#         }
 
 class Item(db.Model):
     __tablename__ = 'items'
