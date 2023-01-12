@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from .config import Configuration
 #from .routes import simple must be refactored for pokedex
