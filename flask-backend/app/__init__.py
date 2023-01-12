@@ -1,7 +1,7 @@
 import os
 from flask import Flask
 from .config import Configuration
-#from .routes import simple must be refactored for pokedex
+from .routes import item_routes, pokemon_routes
 from .models import db
 from flask_migrate import Migrate
 # import statement for CSRF
@@ -11,7 +11,8 @@ from flask_wtf.csrf import CSRFProtect, generate_csrf
 
 app = Flask(__name__)
 app.config.from_object(Configuration)
-# app.register_blueprint(simple.bp) must be refactored for pokedex
+app.register_blueprint(item_routes, url_prefix='/api/items')
+app.register_blueprint(pokemon_routes, url_prefix='/api/pokemon')
 db.init_app(app)
 Migrate(app, db)
 
