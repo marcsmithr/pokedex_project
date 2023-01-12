@@ -1,4 +1,4 @@
-from app.models import db, Pokemon, Items
+from app.models import db, Pokemon, Item, PokemonType
 from app import app
 from random import randint
 
@@ -7,30 +7,48 @@ with app.app_context():
     db.drop_all()
     db.create_all()
 
+    types = [
+        "fire",
+        "electric",
+        "normal",
+        "ghost",
+        "psychic",
+        "water",
+        "bug",
+        "dragon",
+        "grass",
+        "fighting",
+        "ice",
+        "flying",
+        "poison",
+        "ground",
+        "rock",
+        "steel",
+    ]
+
+    for type in types:
+        db.session.add(PokemonType(type=type))
+
+    db.session.commit()
+
     all_pokemon = [Pokemon(
         number=1,
         image_url='/images/pokemon_snaps/1.svg',
         name='Bulbasaur',
         attack=49,
         defense=49,
-        type='grass',
-        moves=[
-            'tackle',
-            'vine whip'
-        ],
+        type_id=9,
+        moves='tackle, vine whip',
         captured=True
-    ), Pokemon(
+    ),
+    Pokemon(
         number=2,
         image_url='/images/pokemon_snaps/2.svg',
         name='Ivysaur',
         attack=62,
         defense=63,
-        type='grass',
-        moves=[
-            'tackle',
-            'vine whip',
-            'razor leaf'
-        ],
+        type_id=5,
+        moves='tackle, vine whip, razor leaf',
         captured=True
     ), Pokemon(
         number=3,
@@ -38,12 +56,8 @@ with app.app_context():
         name='Venusaur',
         attack=82,
         defense=83,
-        type='grass',
-        moves=[
-            'tackle',
-            'vine whip',
-            'razor leaf'
-        ],
+        type_id=3,
+        moves='tackle, vine whip, razor leaf',
         captured=True
     ), Pokemon(
         number=4,
@@ -51,12 +65,8 @@ with app.app_context():
         name='Charmander',
         attack=52,
         defense=43,
-        type='fire',
-        moves=[
-            'scratch',
-            'ember',
-            'metal claw'
-        ],
+        type_id=3,
+        moves='scratch, ember, metal claw',
         captured=True
     ), Pokemon(
         number=5,
@@ -64,13 +74,8 @@ with app.app_context():
         name='Charmeleon',
         attack=64,
         defense=58,
-        type='fire',
-        moves=[
-            'scratch',
-            'ember',
-            'metal claw',
-            'flamethrower'
-        ],
+        type_id=7,
+        moves='scratch, ember, metal claw, flamethrower',
         captured=True
     ), Pokemon(
         number=6,
@@ -78,13 +83,8 @@ with app.app_context():
         name='Charizard',
         attack=84,
         defense=78,
-        type='fire',
-        moves=[
-            'flamethrower',
-            'wing attack',
-            'slash',
-            'metal claw'
-        ],
+        type_id=8,
+        moves='flamethrower, wing attack, slash, metal claw',
         captured=True
     ), Pokemon(
         number=7,
@@ -92,12 +92,8 @@ with app.app_context():
         name='Squirtle',
         attack=48,
         defense=65,
-        type='water',
-        moves=[
-            'tackle',
-            'bubble',
-            'water gun'
-        ],
+        type_id=9,
+        moves='tackle, bubble, water gun',
         captured=True
     ), Pokemon(
         number=8,
@@ -105,13 +101,8 @@ with app.app_context():
         name='Wartortle',
         attack=63,
         defense=80,
-        type='water',
-        moves=[
-            'tackle',
-            'bubble',
-            'water gun',
-            'bite'
-        ],
+        type_id=5,
+        moves='tackle, bubble, water gun, bite',
         captured=True
     ), Pokemon(
         number=9,
@@ -119,85 +110,60 @@ with app.app_context():
         name='Nidoking',
         attack=92,
         defense=77,
-        type='poison',
-        moves=[
-            'peck',
-            'poison sting',
-            'megahorn'
-        ],
+        type_id=1,
+        moves='peck, poison sting, megahorn',
     ), Pokemon(
         number=10,
         image_url='/images/pokemon_snaps/17.svg',
         name='Pidgeotto',
         attack=60,
         defense=55,
-        type='normal',
-        moves=[
-            'tackle',
-            'gust',
-            'wing attack'
-        ]
+        type_id=3,
+        moves='tackle, gust, wing attack'
     ), Pokemon(
         number=11,
         image_url='/images/pokemon_snaps/9.svg',
         name='Blastoise',
         attack=83,
         defense=100,
-        type='water',
-        moves=[
-            'hydro pump',
-            'bubble',
-            'water gun',
-            'bite'
-        ]
+        type_id=2,
+        moves='hydro pump, bubble, water gun, bite'
     ), Pokemon(
         number=12,
         image_url='/images/pokemon_snaps/10.svg',
         name='Caterpie',
         attack=30,
         defense=35,
-        type='bug',
-        moves=[
-            'tackle'
-        ]
+        type_id=7,
+        moves='tackle'
     ), Pokemon(
         number=13,
         image_url='/images/pokemon_snaps/12.svg',
         name='Butterfree',
         attack=45,
         defense=50,
-        type='bug',
-        moves=[
-            'confusion',
-            'gust',
-            'psybeam',
-            'silver wind'
-        ]
+        type_id=12,
+        moves='confusion, gust, psybeam, silver wind'
     ), Pokemon(
         number=14,
         image_url='/images/pokemon_snaps/13.svg',
         name='Weedle',
         attack=35,
         defense=30,
-        type='bug',
-        moves=[
-            'poison sting'
-        ]
+        type_id=16,
+        moves='poison sting'
     ), Pokemon(
         number=15,
         image_url='/images/pokemon_snaps/16.svg',
         name='Pidgey',
         attack=45,
         defense=40,
-        type='normal',
-        moves=[
-            'tackle',
-            'gust'
-        ]
+        type_id=14,
+        moves='tackle, gust'
     ),]
 
     add_pokemon = [db.session.add(pokemon) for pokemon in all_pokemon]
-    db.session.commit()
+
 
     def random_image():
         images = [
@@ -207,7 +173,7 @@ with app.app_context():
             "/images/pokemon_super_potion.svg",
         ]
 
-        index = randint(0, len(images))
+        index = randint(0, len(images) - 1)
         return images[index]
 
     def generate_items():
@@ -220,11 +186,11 @@ with app.app_context():
             "mago berry",
             "pearl"
         ]
-        
+
         for pokemon in all_pokemon:
             for i in range(2):
-                item = Items(
-                 pokemon.id,
+                item = Item(
+                 pokemon_id=pokemon.id,
                  happiness=randint(1, 100),
                  price=randint(1, 100),
                  image_url=random_image(),
@@ -232,4 +198,7 @@ with app.app_context():
                 )
 
                 item_list.append(item)
-        print(item_list)    
+        [db.session.add(item) for item in item_list]
+
+    generate_items()
+    db.session.commit()

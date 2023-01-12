@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.schema import ForeignKey
+from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -16,8 +17,8 @@ class Pokemon(db.Model):
     encounter_rate = db.Column(db.Float(5, 2), default=1.00, nullable=False)
     catch_rate = db.Column(db.Float(5, 2), default=1.00, nullable=False)
     captured = db.Column(db.Boolean, default=False, nullable=False)
-    created_at = db.Column(db.Date, nullable=False)
-    updated_at = db.Column(db.Date, nullable=False)
+    created_at = db.Column(db.Date, default=datetime.now(), nullable=False)
+    updated_at = db.Column(db.Date, default=datetime.now(), nullable=False)
 
     types = db.relationship("PokemonType", back_populates='pokemon')
     items = db.relationship("Item", back_populates='pokemon', cascade="all, delete")
@@ -62,7 +63,7 @@ class Item(db.Model):
     price = db.Column(db.Integer, nullable=False)
     pokemon_id = db.Column(db.Integer, ForeignKey("pokemons.id"))
 
-    pokemon = db.relationship("Pokemon", back_populates='item')
+    pokemon = db.relationship("Pokemon", back_populates='items')
 
     def to_dict(self):
         return {
@@ -79,7 +80,7 @@ class PokemonType(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String(50), nullable=False)
 
-    pokemon = db.relationship("Pokemon", back_populates="type", cascade="all, delete")
+    pokemon = db.relationship("Pokemon", back_populates="types", cascade="all, delete")
 
     def to_dict(self):
         return {
