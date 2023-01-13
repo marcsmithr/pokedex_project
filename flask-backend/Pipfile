@@ -17,6 +17,7 @@ python-dotenv = "*"
 sqlalchemy = "*"
 wtforms = "*"
 flask-wtf = "*"
+flask-cors = "*"
 
 [dev-packages]
 

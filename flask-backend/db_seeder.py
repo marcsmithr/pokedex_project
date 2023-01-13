@@ -33,7 +33,7 @@ with app.app_context():
 
     all_pokemon = [Pokemon(
         number=1,
-        image_url='/images/pokemon_snaps/1.svg',
+        image_url='/static/images/pokemon_snaps/1.svg',
         name='Bulbasaur',
         attack=49,
         defense=49,
@@ -43,7 +43,7 @@ with app.app_context():
     ),
     Pokemon(
         number=2,
-        image_url='/images/pokemon_snaps/2.svg',
+        image_url='/static/images/pokemon_snaps/2.svg',
         name='Ivysaur',
         attack=62,
         defense=63,
@@ -52,7 +52,7 @@ with app.app_context():
         captured=True
     ), Pokemon(
         number=3,
-        image_url='/images/pokemon_snaps/3.svg',
+        image_url='/static/images/pokemon_snaps/3.svg',
         name='Venusaur',
         attack=82,
         defense=83,
@@ -61,7 +61,7 @@ with app.app_context():
         captured=True
     ), Pokemon(
         number=4,
-        image_url='/images/pokemon_snaps/4.svg',
+        image_url='/static/images/pokemon_snaps/4.svg',
         name='Charmander',
         attack=52,
         defense=43,
@@ -70,7 +70,7 @@ with app.app_context():
         captured=True
     ), Pokemon(
         number=5,
-        image_url='/images/pokemon_snaps/5.svg',
+        image_url='/static/images/pokemon_snaps/5.svg',
         name='Charmeleon',
         attack=64,
         defense=58,
@@ -79,7 +79,7 @@ with app.app_context():
         captured=True
     ), Pokemon(
         number=6,
-        image_url='/images/pokemon_snaps/6.svg',
+        image_url='/static/images/pokemon_snaps/6.svg',
         name='Charizard',
         attack=84,
         defense=78,
@@ -88,7 +88,7 @@ with app.app_context():
         captured=True
     ), Pokemon(
         number=7,
-        image_url='/images/pokemon_snaps/7.svg',
+        image_url='/static/images/pokemon_snaps/7.svg',
         name='Squirtle',
         attack=48,
         defense=65,
@@ -97,7 +97,7 @@ with app.app_context():
         captured=True
     ), Pokemon(
         number=8,
-        image_url='/images/pokemon_snaps/8.svg',
+        image_url='/static/images/pokemon_snaps/8.svg',
         name='Wartortle',
         attack=63,
         defense=80,
@@ -106,7 +106,7 @@ with app.app_context():
         captured=True
     ), Pokemon(
         number=9,
-        image_url='/images/pokemon_snaps/34.svg',
+        image_url='/static/images/pokemon_snaps/34.svg',
         name='Nidoking',
         attack=92,
         defense=77,
@@ -114,7 +114,7 @@ with app.app_context():
         moves='peck, poison sting, megahorn',
     ), Pokemon(
         number=10,
-        image_url='/images/pokemon_snaps/17.svg',
+        image_url='/static/images/pokemon_snaps/17.svg',
         name='Pidgeotto',
         attack=60,
         defense=55,
@@ -122,7 +122,7 @@ with app.app_context():
         moves='tackle, gust, wing attack'
     ), Pokemon(
         number=11,
-        image_url='/images/pokemon_snaps/9.svg',
+        image_url='/static/images/pokemon_snaps/9.svg',
         name='Blastoise',
         attack=83,
         defense=100,
@@ -130,7 +130,7 @@ with app.app_context():
         moves='hydro pump, bubble, water gun, bite'
     ), Pokemon(
         number=12,
-        image_url='/images/pokemon_snaps/10.svg',
+        image_url='/static/images/pokemon_snaps/10.svg',
         name='Caterpie',
         attack=30,
         defense=35,
@@ -138,7 +138,7 @@ with app.app_context():
         moves='tackle'
     ), Pokemon(
         number=13,
-        image_url='/images/pokemon_snaps/12.svg',
+        image_url='/static/images/pokemon_snaps/12.svg',
         name='Butterfree',
         attack=45,
         defense=50,
@@ -146,7 +146,7 @@ with app.app_context():
         moves='confusion, gust, psybeam, silver wind'
     ), Pokemon(
         number=14,
-        image_url='/images/pokemon_snaps/13.svg',
+        image_url='/static/images/pokemon_snaps/13.svg',
         name='Weedle',
         attack=35,
         defense=30,
@@ -154,7 +154,7 @@ with app.app_context():
         moves='poison sting'
     ), Pokemon(
         number=15,
-        image_url='/images/pokemon_snaps/16.svg',
+        image_url='/static/images/pokemon_snaps/16.svg',
         name='Pidgey',
         attack=45,
         defense=40,
@@ -167,10 +167,10 @@ with app.app_context():
 
     def random_image():
         images = [
-            "/images/pokemon_berry.svg",
-            "/images/pokemon_egg.svg",
-            "/images/pokemon_potion.svg",
-            "/images/pokemon_super_potion.svg",
+            "/static/images/pokemon_berry.svg",
+            "/static/images/pokemon_egg.svg",
+            "/static/images/pokemon_potion.svg",
+            "/static/images/pokemon_super_potion.svg",
         ]
 
         index = randint(0, len(images) - 1)
