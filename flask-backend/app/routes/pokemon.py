@@ -32,7 +32,6 @@ def post_pokemon():
     if form.errors:
         print(form.errors)
 
-    return redirect('')
 
 @pokemon_routes.route('/<int:id>')
 def single(id):
@@ -45,3 +44,15 @@ def single(id):
     print(poke['moves'])
 
     return poke
+
+@pokemon_routes.route('/types')
+def types():
+    types = PokemonType.query.all()
+
+    types = [type.to_dict() for type in types]
+
+    types = [type['type'] for type in types]
+
+    print(types)
+
+    return types
